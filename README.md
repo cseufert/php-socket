@@ -1,7 +1,7 @@
 php-socket
 ==========
 
-A PHP Comet Library with Fallbacks
+A PHP Comet Library
 
 An example of how to use (server):
 
@@ -21,10 +21,18 @@ $comet->on('connection', function($client) {
 You can also send messages to clients outside an active comet session:
 
 ```php
+<?php
 $message = "You have mail";
 $comet = new comet();
 $client = $comet->getClient(123); // Client ID is 123 here
 $client->raise('message', ['message'=>$message]);
+```
+
+comet.php
+```php
+<?php
+$session = new cometSession();
+$session->process();
 ```
 
 And an example of the JavaScript code:
@@ -36,5 +44,6 @@ comet.on('ping', function(data) {
 comet.on('message', function(data) {
   console.log("Message received: " + data['message']);
 });
+comet.connect({'server': '/comet.php'});
 ```
 
