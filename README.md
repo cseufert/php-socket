@@ -44,6 +44,6 @@ comet.on('ping', function(data) {
 comet.on('message', function(data) {
   console.log("Message received: " + data['message']);
 });
-comet.connect({'server': '/comet.php'});
+comet.start({'server': '/comet.php'});
 ```
 
